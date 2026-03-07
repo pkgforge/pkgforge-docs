@@ -1,22 +1,18 @@
 # Metadata
 
-soarpkgs generates metadata for all prebuilt packages, split into two views:
-
-- **bincache** — static binary metadata
-- **pkgcache** — portable package metadata (AppImage, FlatImage, etc.)
+soarpkgs generates metadata for all prebuilt packages — a single metadata file per architecture.
 
 ## URLs
 
 Metadata is available in JSON and SQLite formats:
 
 ```
-https://github.com/pkgforge/soarpkgs/releases/latest/download/bincache-${HOST}.json
-https://github.com/pkgforge/soarpkgs/releases/latest/download/pkgcache-${HOST}.json
+https://github.com/pkgforge/soarpkgs/releases/latest/download/metadata-${ARCH}-linux.json.zstd
 ```
 
-Append `.zstd` for compressed versions. SQLite format uses `.sdb` / `.sdb.zstd`.
+Also available as `.json`, `.sdb`, or `.sdb.zstd`.
 
-`${HOST}` is one of: `aarch64-Linux`, `x86_64-Linux`
+`${ARCH}` is one of: `aarch64`, `x86_64`
 
 ## Fields
 
@@ -80,11 +76,11 @@ snapshots: "@array"           // Version tags
 
 ```bash
 # List all packages
-curl -qfsSL "https://github.com/pkgforge/soarpkgs/releases/latest/download/bincache-$(uname -m)-$(uname -s).json" \
+curl -qfsSL "https://github.com/pkgforge/soarpkgs/releases/latest/download/metadata-$(uname -m)-linux.json" \
   | jq -r '.[] | .pkg'
 
 # Search for a package
-curl -qfsSL "https://github.com/pkgforge/soarpkgs/releases/latest/download/bincache-$(uname -m)-$(uname -s).json" \
+curl -qfsSL "https://github.com/pkgforge/soarpkgs/releases/latest/download/metadata-$(uname -m)-linux.json" \
   | jq -r '.[] | select(.pkg | test("qbittorrent"; "i"))'
 ```
 

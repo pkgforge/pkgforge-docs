@@ -39,10 +39,12 @@ soar install sbuild
 
 Or grab them from [sbuilder releases](https://github.com/pkgforge/sbuilder/releases).
 
-Pushing to GHCR requires [oras](https://oras.land/). Install it with:
+Additional requirements:
+- [oras](https://oras.land/) — for pushing packages to GHCR
+- [shellcheck](https://www.shellcheck.net/) — for linting shell scripts in recipes
 
 ```bash
-soar install oras
+soar install oras shellcheck
 ```
 
 ### 2. Build Packages
@@ -90,10 +92,7 @@ This scans your recipe directories, queries GHCR for package info, and produces 
 
 ```
 metadata/
-├── bincache/
-│   └── x86_64-linux.json
-└── pkgcache/
-    └── x86_64-linux.json
+└── x86_64-linux.json
 ```
 
 Key `sbuild meta generate` options:
@@ -104,7 +103,6 @@ Key `sbuild meta generate` options:
 | `--recipes` | Recipe directories to scan |
 | `--output` | Output directory for JSON files |
 | `--ghcr-owner` | GHCR owner/organization |
-| `--cache-type` | Generate `bincache`, `pkgcache`, or `all` (default: all) |
 | `--parallel` | Number of parallel workers (default: 4) |
 
 ### 4. Host Metadata

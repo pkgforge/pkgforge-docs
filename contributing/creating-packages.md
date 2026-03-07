@@ -51,24 +51,18 @@ Key things to remember:
 ## Step 3: Validate
 
 ```bash
-# Install sbuild
-soar install sbuild
+# Install sbuild and shellcheck
+soar install sbuild shellcheck
 
 # Validate your SBUILD
 sbuild lint ./myapp.yaml
-
-# Check YAML syntax
-# Visit: https://www.yamllint.com/
-
-# Check shell syntax
-# Visit: https://www.shellcheck.net/
 ```
 
 ## Step 4: Test Locally
 
 ```bash
 # Run the build
-sbuild ./myapp.yaml
+sbuild build ./myapp.yaml
 ```
 
 ## Step 5: Submit

@@ -30,12 +30,6 @@ We'll help fix any issues and provide feedback. See [Creating Packages](/contrib
 
 Inspired by the AUR concept but curated — packages are reviewed by maintainers before inclusion.
 
-### What is bincache/pkgcache?
-
-These are metadata views generated from soarpkgs:
-- **bincache**: prebuilt static binaries
-- **pkgcache**: prebuilt portable packages (AppImage, FlatImage, etc.)
-
 ### GLIBC vs MUSL
 
 MUSL binaries use [mimalloc](https://github.com/microsoft/mimalloc) for performance parity with GLIBC. LTO and PIE optimizations are also applied.

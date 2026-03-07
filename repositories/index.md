@@ -12,8 +12,7 @@ soarpkgs (github.com/pkgforge/soarpkgs)
 │   ├── Publishes to ghcr.io/pkgforge/*
 │   └── Generates metadata
 ├── GitHub Releases
-│   ├── bincache-{arch}.sdb.zstd (static binaries metadata)
-│   ├── pkgcache-{arch}.sdb.zstd (portable packages metadata)
+│   ├── metadata-{arch}-linux.sdb.zstd (package metadata)
 │   └── Minisign signatures
 └── Soar fetches metadata → downloads packages from ghcr.io
 ```
@@ -27,16 +26,13 @@ soarpkgs (github.com/pkgforge/soarpkgs)
 5. Metadata is signed with minisign
 6. Soar downloads metadata → installs packages from ghcr.io
 
-## Metadata Views
+## Metadata
 
-Metadata is split into two views:
+Metadata is published as a compressed SQLite database (`.sdb.zstd`) per architecture:
 
-| View | Contents | URL Pattern |
-|---|---|---|
-| **bincache** | Static binaries | `soarpkgs/releases/.../bincache-{arch}-Linux.sdb.zstd` |
-| **pkgcache** | Portable packages (AppImage, FlatImage, etc.) | `soarpkgs/releases/.../pkgcache-{arch}-Linux.sdb.zstd` |
-
-Format: compressed SQLite database (`.sdb.zstd`)
+```
+soarpkgs/releases/.../metadata-{arch}-linux.sdb.zstd
+```
 
 Supported architectures: `x86_64-Linux`, `aarch64-Linux`, `riscv64-Linux`
 

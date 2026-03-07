@@ -1,6 +1,14 @@
 # Linting
 
-The `sbuild` tool includes a built-in linter that validates SBUILD recipes before execution. It checks for required fields, correct types, and valid values.
+The `sbuild` tool includes a built-in linter that validates SBUILD recipes before execution. It checks for required fields, correct types, valid values, and runs [shellcheck](https://www.shellcheck.net/) on shell scripts.
+
+## Prerequisites
+
+- [shellcheck](https://www.shellcheck.net/) — used to validate `x_exec.run` and `x_exec.pkgver` blocks
+
+```bash
+soar install shellcheck
+```
 
 ## Installation
 
@@ -19,8 +27,14 @@ sbuild lint ./myapp.yaml
 # Validate multiple files
 sbuild lint ./packages/*.yaml
 
-# Validate with verbose output
-sbuild lint -v ./myapp.yaml
+# Validate in parallel
+sbuild lint -p 8 ./packages/*.yaml
+
+# Run in pkgver mode (execute pkgver scripts)
+sbuild lint -P ./myapp.yaml
+
+# Skip shellcheck validation
+sbuild lint --no-shellcheck ./myapp.yaml
 ```
 
 ## What It Checks
@@ -29,8 +43,8 @@ sbuild lint -v ./myapp.yaml
 - **Field types**: Arrays must be arrays, strings must be strings
 - **Valid values**: `pkg_type` must be a recognized format, `category` must match FreeDesktop spec
 - **Name constraints**: `pkg`, `pkg_id`, `app_id` only allow `[a-zA-Z0-9+\-_.]`
-- **Shell syntax**: Validation of `x_exec.pkgver` and `x_exec.run` blocks via shellcheck
-- **URL format**: `src_url`, `homepage`, and `build_asset.url` entries must be valid URLs
+- **Shell syntax**: Validates `x_exec.pkgver` and `x_exec.run` blocks via shellcheck
+- **URL format**: `src_url`, `homepage` entries must be valid URLs
 - **Host triples**: `x_exec.host` entries must match `{arch}-{os}` format
 
 ## Common Errors
@@ -64,6 +78,4 @@ The `run` block must contain actual shell commands.
 Before submitting an SBUILD to soarpkgs:
 
 1. Run `sbuild lint` — no errors
-2. Check YAML syntax with [yamllint](https://www.yamllint.com/)
-3. Check shell syntax with [ShellCheck](https://www.shellcheck.net/)
-4. Test the build locally with `sbuild`
+2. Test the build locally with `sbuild build`

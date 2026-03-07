@@ -43,9 +43,8 @@ The main package repository with 500+ SBUILD recipes, automated CI builds, and m
 
 - **July 2023**: [Toolpacks](https://github.com/Azathothas/Toolpacks) created — scripts for fetching precompiled binaries
 - **Nov 2023**: [Hysp](https://github.com/pwnwriter/hysp), the first package manager for Toolpacks
-- **Sep 2024**: pkgcache created for portable package formats (AppImage, FlatImage, etc.)
 - **Oct 2024**: [Soar](https://github.com/pkgforge/soar) receives its first commit
-- **Nov 2024**: [PkgForge](https://github.com/pkgforge) organization created, soarpkgs unifies bincache + pkgcache
+- **Nov 2024**: [PkgForge](https://github.com/pkgforge) organization created, soarpkgs established
 - **Jan 2025**: Toolpacks archived, fully replaced by soarpkgs
 
 ## Resources
